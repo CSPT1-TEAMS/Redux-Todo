@@ -3,9 +3,8 @@ export const TOGGLE_TODO = 'TOGGLE_TODO';
 // export const DELETE_TODO = 'DELETE_TODO';
 
 
-export const addTodo = (todos = [], action) => {
-  // console.log('ADD_TODO');
-  return { type: ADD_TODO, payload: 'TODO STRING'}// Fill in this function
+export const addTodo = (value) => {
+  return { type: ADD_TODO, payload: value}// Fill in this function
 };
 
 export const completeTodo = () => {
