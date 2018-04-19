@@ -20,6 +20,9 @@ const todoReducer = (state = initialState, action) => {
     addToLocalStorage([...state, newTodo])
     return [...state, newTodo]
   case TOGGLE_TODO:
+    addToLocalStorage(JSON.parse(localTodos).map((todo => (
+      todo.id === action.payload ? { ...todo, completed: !todo.completed} : todo
+    ))));
     return state.map(todo => (
       todo.id === action.payload ? { ...todo, completed: !todo.completed} : todo
     ))
