@@ -12,7 +12,7 @@ export default(todos = [], action) => {
              todoItem: action.payload,
              completed: false
         }
-
+        console.log(newTodo, "our new item");
         return [...todos, newTodo]
 
         // case TOGGLE_COMPLETED:

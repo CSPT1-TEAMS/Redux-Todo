@@ -6,32 +6,30 @@ class TodoList extends Component {
     constructor(){
         super();
         this.state = {
-            todoText: ''
+            todo: ''
         };
     }
 
-    handleFormInput = e => {
-        this.setState({[e.target.TodoItem]: e.target.value})
+    handleFormSubmit = e => {
+        e.preventDefault();
+        this.props.addTodo(this.state.todo)
+        console.log(this.state.todo);
+        this.setState({ todo: '' })
     };
 
-    buttonAddTodo = e => {
-       const { todoText } = this.state
-        const newTodoList = {
-            todoText,
-            completed: false
-        };
-        this.props.addTodo(newTodoList);
-        this.setState({ todoText: '' });
+    inputChange = e => {
+        this.setState({ todo: e.target.value })
     };
+
 
     render(){
         return (
             <div>
-                <form>
-                    <input placeholder="Add to the list" todoItem="text" onChange={this.handleFormInput} value={this.state.todoText} />
-                    <button onClick={this.buttonAddTodo} type="button">
+                <form onSubmit={this.handleFormSubmit}>
+                    <input placeholder="Add to the list" type="text" value={this.state.todo} onChange={this.inputChange} />
+                    {/* <button onClick={this.buttonAddTodo} type="button">
                         Add your todo item to the list
-                    </button>
+                    </button> */}
                 </form>
             </div>
         );
@@ -40,7 +38,7 @@ class TodoList extends Component {
 
 const mapStateToProps = state => {
     return {
-      todos: state.todos
+      todos: state
     };
   };
 
