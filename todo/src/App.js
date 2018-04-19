@@ -33,6 +33,11 @@ class App extends Component {
         <form onSubmit={this.valueChange}>
           <input className="InputElement" type='text' value={this.state.newTodo} onChange={this.inputChange} placeholder="Enter new task" /> 
 
+          <div className="btn-NavButton"><button type="submit" form="adding">Add task</button></div>
+          <div className="btn-NavButton"><button type="submit" form="adding">Save task</button></div>
+          <div className="btn-NavButton"><button type="submit" form="adding">Find task</button></div>
+          <div className="btn-NavButton"><button type="submit" form="adding">Delete task</button></div>
+          
 
         </form>
        <div className="todo"> {this.props.todos.map((todo, index) => {
