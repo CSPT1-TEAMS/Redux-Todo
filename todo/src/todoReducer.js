@@ -2,7 +2,7 @@ import { ADD_TODO, TOGGLE_TODO, DELETE_TODO } from './todoAction';
 import { v4 } from 'uuid';
 
 const localTodos = localStorage.getItem('todos');
-const initialState = localTodos === undefined ? [] : JSON.parse(localTodos);
+const initialState = localTodos === null ? [] : JSON.parse(localTodos);
 
 const addToLocalStorage = newState => {
   // storage.push(newTodo)
@@ -20,7 +20,7 @@ const todoReducer = (state = initialState, action) => {
     addToLocalStorage([...state, newTodo])
     return [...state, newTodo]
   case TOGGLE_TODO:
-    addToLocalStorage(JSON.parse(localTodos).map((todo => (
+    addToLocalStorage(JSON.parse(localStorage.getItem('todos')).map((todo => (
       todo.id === action.payload ? { ...todo, completed: !todo.completed} : todo
     ))));
     return state.map(todo => (

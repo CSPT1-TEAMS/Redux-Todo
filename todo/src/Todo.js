@@ -42,7 +42,7 @@ class Todo extends Component {
 	  return (<li key={index}>
 		  <input type="checkbox"
 		  onClick={() => this.props.toggleTodo(todo.id)}
-		  value={todo.completed} />
+		  checked={todo.completed} />
 		      {todo.value} <a onClick={(e) => this.handleDelete(e, todo.id)} href="">x</a>
 		  </li>)
 	})}
