@@ -52,10 +52,12 @@ class Todos extends Component {
                         <ul>
 
                     {this.props.todos.map((todo,i)=> {
-            
+                        const strikethrough = {textDecoration:"line-through"
+                        }
+        
                         return (
                             <li key = {i}>
-                            <div>
+                            <div style = {todo.completed ? strikethrough : {}}>
                             <h2 onClick = { () => this.toggleCompleted(todo.id)}>{todo.title}</h2>
                            <p> {todo.todo} </p>
                                 </div> 
