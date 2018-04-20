@@ -1,6 +1,6 @@
 // action = { type: ADD_TODO, payload: todoItem }
 export const ADD_TODO = 'ADD_TODO';
-// export const TOGGLE_COMPLETED = 'TOGGLE_COMPLETED';
+export const TOGGLE_COMPLETED = 'TOGGLE_COMPLETED';
 
 export const addTodo = todoItem => {
     return {
@@ -9,9 +9,9 @@ export const addTodo = todoItem => {
     };
 };
 
-// export const toggleComplete = toggle => {
-//     return {
-//         type: TOGGLE_COMPLETED,
-//         payload: id
-//     };
-// };
+export const toggleComplete = id => {
+    return {
+        type: TOGGLE_COMPLETED,
+        payload: id
+    };
+};

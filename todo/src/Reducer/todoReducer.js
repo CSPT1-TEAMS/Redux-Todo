@@ -1,4 +1,4 @@
-import { ADD_TODO } from '../Actions/actions';
+import { ADD_TODO, TOGGLE_COMPLETED } from '../Actions/actions';
 
 // state = [ { todos, completed } ]
 // action = { type: ADD_TODO, payload: todoItem }
@@ -10,17 +10,17 @@ export default(todos = [], action) => {
 
         const newTodo = {
              todoItem: action.payload,
-             completed: false
+             completed: false,
         }
         console.log(newTodo, "our new item");
         return [...todos, newTodo]
 
-        // case TOGGLE_COMPLETED:
+        case TOGGLE_COMPLETED:
         // if set is complete vs is not complete
-        // return todos.map((todo, index) => {
-        //     return index !== action.payload ? todo : 
-        //         Object.assign({}, todo, {completed: !todo.completed});
-        // });
+        return todos.map((todo, index) => {
+            return index !== action.payload ? todo : 
+                Object.assign({}, todo, {completed: !todo.completed});
+        });
 
         default:
         return todos;

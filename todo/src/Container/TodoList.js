@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../Actions/actions';
+import { addTodo, toggleComplete } from '../Actions/actions';
 
 class TodoList extends Component {
     constructor(){
@@ -21,12 +21,30 @@ class TodoList extends Component {
         this.setState({ todo: e.target.value })
     };
 
+    // handleToggle = (todoId) => {
+    //     this.props.toggleComplete(todoId);
+    // };
+
 
     render(){
         return (
             <div>
                 <form onSubmit={this.handleFormSubmit}>
                     <input placeholder="Add to the list" type="text" value={this.state.todo} onChange={this.inputChange} />
+                    <h1>
+                         List of things todo! 
+                    </h1>
+                    <ul>
+                        {this.props.todos.map((todo, i) => {
+                            return (
+                                <li key={i} onClick={() => this.props.toggleComplete(todo.id)} style={todo.completed ? {color: "silver", textDecoration: 'line-through' } : null }>
+                                    <div>
+                                        <p>{todo.todoItem}</p>
+                                    </div>
+                                </li>
+                            )
+                        })}
+                    </ul>
                     {/* <button onClick={this.buttonAddTodo} type="button">
                         Add your todo item to the list
                     </button> */}
@@ -42,4 +60,4 @@ const mapStateToProps = state => {
     };
   };
 
-  export default connect(mapStateToProps,{addTodo})(TodoList);
+  export default connect(mapStateToProps,{addTodo, toggleComplete})(TodoList);
