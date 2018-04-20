@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { addTodo } from '../actions'
+import { addTodo, completeTodo } from '../actions'
 import NewTodo from './NewTodo'
 import TodoItem from './TodoItem'
 
@@ -18,7 +18,8 @@ class TodoList extends Component {
   // }
 
   handleSubmit = (value) => {
-    this.setState({todos: this.props.addTodo(value)});
+    this.props.addTodo(value);
+    console.log(this.state.todos);
   }
 
   render() {
@@ -33,7 +34,7 @@ class TodoList extends Component {
         <h3>Todos:</h3>
           <ul>
             {this.props.todos.map(todo => {
-                return <li>{todo}</li>;
+                return <li><TodoItem todo = {todo} completeTodo={this.completeTodo}/></li>;
               })}
           </ul>
         <NewTodo handleSubmit={this.handleSubmit}/>

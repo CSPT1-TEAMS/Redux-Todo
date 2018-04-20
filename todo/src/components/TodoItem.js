@@ -15,7 +15,7 @@ export default class TodoItem extends Component {
       <div className="TodoItem">
       {this.props.todo !== '' ?
           <div>
-            <p>Todo-ing: {this.props.todo}</p>
+            <p> {this.props.todo}</p>
           </div> : <div></div>}
       </div>
     );

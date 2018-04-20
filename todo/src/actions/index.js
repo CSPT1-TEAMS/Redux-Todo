@@ -7,7 +7,7 @@ export const addTodo = (value) => {
   return { type: ADD_TODO, payload: value}// Fill in this function
 };
 
-export const completeTodo = () => {
+export const completeTodo = (value) => {
   // console.log('ADD_TODO');
-  return { type: TOGGLE_TODO, payload: this.toggleTodo()} // Fill in this function
+  return { type: TOGGLE_TODO, payload: value} // Fill in this function
 };
