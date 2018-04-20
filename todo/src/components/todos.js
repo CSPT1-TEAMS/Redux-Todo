@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Form,Button,Label,Input,FormText} from 'reactstrap';
 import {connect} from 'react-redux';
-import {addTodo,getTodos} from '../actions/actions';
+import {addTodo,getTodos,toggleCompleted} from '../actions/actions';
 
 
 
@@ -10,7 +10,7 @@ class Todos extends Component {
         super(props)
         this.state = {
             title: '',
-            todo: ''
+            todo: ''  
         }
     }
 
@@ -27,8 +27,13 @@ class Todos extends Component {
             this.setState({todo:e.target.value})
        }
 
+       toggleCompleted = (index) => {
+           console.log(index)
+            this.props.toggleCompleted(index)
+       }
+
         render(){
-            console.log(this.props)
+            
             return (
                 <div>
                     <Form>
@@ -39,11 +44,19 @@ class Todos extends Component {
                         <h2> Todos </h2>
                         <ul>
 
-                    {this.props.todos.map((todo)=> {
+                    {this.props.todos.map((todo,i)=> {
+                        
                         return (
-                            <li key = {todo.title}>
-                                {todo.title}
+                            <li key = {i}>
+                            <div onClick = {(i) => this.toggleCompleted(i)}>
+                            {console.log(i)}
+                            <h2>{todo.title}</h2>
+                           <p> {todo.todo} </p>
+                              
+                                </div>
+                                
                             </li>
+                            
                         )
                     })}
                     </ul>
@@ -54,11 +67,11 @@ class Todos extends Component {
     }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+   
    return  { 
        todos:state
        
     }
 }
 
-export default connect(mapStateToProps,{addTodo,getTodos})(Todos)
+export default connect(mapStateToProps,{addTodo,getTodos,toggleCompleted})(Todos)
