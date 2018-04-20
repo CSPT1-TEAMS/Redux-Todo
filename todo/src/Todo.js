@@ -39,12 +39,16 @@ class Todo extends Component {
 	</form>
 	<ul>
 	{this.props.todos.map((todo, index) => {
-	  return (<li key={index}>
-		  <input type="checkbox"
-		  onClick={() => this.props.toggleTodo(todo.id)}
-		  checked={todo.completed} />
-		      {todo.value} <a onClick={(e) => this.handleDelete(e, todo.id)} href="">x</a>
-		  </li>)
+	  return (
+	    <li key={index}>
+	      <input
+		type="checkbox"
+		onClick={() => this.props.toggleTodo(todo.id)}
+		checked={todo.completed}
+		/>
+		{todo.value} <a onClick={(e) => this.handleDelete(e, todo.id)} href="">x</a>
+	    </li>
+	  )
 	})}
       </ul>
 	</div>
