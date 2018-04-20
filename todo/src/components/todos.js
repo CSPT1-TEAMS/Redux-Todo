@@ -9,6 +9,7 @@ class Todos extends Component {
     constructor(props){
         super(props)
         this.state = {
+            id: 0,
             title: '',
             todo: ''  
         }
@@ -16,7 +17,13 @@ class Todos extends Component {
 
 
         handleSubmit = () => {
-            this.props.addTodo(this.state.title,this.state.todo)
+            console.log('before',this.state)
+            
+            this.props.addTodo(this.state.title,this.state.todo,this.state.id)
+            this.setState({
+                id: this.state.id += 1
+            })
+            console.log('after',this.state)
         }
 
         handleTitleChange = (e) => {
@@ -27,9 +34,9 @@ class Todos extends Component {
             this.setState({todo:e.target.value})
        }
 
-       toggleCompleted = (index) => {
-           console.log(index)
-            this.props.toggleCompleted(index)
+       toggleCompleted = (id) => {
+            console.log(id)
+            this.props.toggleCompleted(id)
        }
 
         render(){
@@ -45,16 +52,13 @@ class Todos extends Component {
                         <ul>
 
                     {this.props.todos.map((todo,i)=> {
-                        
+            
                         return (
                             <li key = {i}>
-                            <div onClick = {(i) => this.toggleCompleted(i)}>
-                            {console.log(i)}
-                            <h2>{todo.title}</h2>
+                            <div>
+                            <h2 onClick = { () => this.toggleCompleted(todo.id)}>{todo.title}</h2>
                            <p> {todo.todo} </p>
-                              
-                                </div>
-                                
+                                </div> 
                             </li>
                             
                         )

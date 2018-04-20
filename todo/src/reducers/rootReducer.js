@@ -6,9 +6,12 @@ import {ADD_TODO,GET_TODOS,TOGGLE_COMPLETED} from '../actions/actions'
 export const todoReducer = (todos = [],action) => {
     switch(action.type) {
         case TOGGLE_COMPLETED:
-            console.log('todos',todos)
-            console.log('payload',action)
-            console.log(todos[action.payload])
+        let temp = todos[action.payload]
+        temp.completed = !temp.completed;
+          let ret = todos.slice(0,action.payload).concat(todos.slice(action.payload,todos.length))
+            return ret
+
+
             
             
         case GET_TODOS:
