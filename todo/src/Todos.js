@@ -38,3 +38,12 @@ class Todos extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        todos: state
+    }
+}
+
+export default connect(mapStateToProps, { addTodoToState, toggleTodoOnState})(
+    Todos
+);
